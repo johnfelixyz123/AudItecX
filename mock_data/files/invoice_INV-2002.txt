@@ -1,0 +1,15 @@
+Document Type: Invoice
+Manifest Ref: DOC-INV-2002
+Vendor ID: VEND-100
+Vendor Name: Apex Office Supply Co.
+Invoice ID: INV-2002
+PO ID: PO-501
+Document Date: 2024-07-15
+Amount: 1250.00
+Currency: USD
+
+Line Items:
+- Ergonomic chairs (5) - 750.00
+- Adjustable desks (2) - 500.00
+
+Notes: Shipment received 2024-07-18. Payment terms NET15. Contact: Maria Lewis.

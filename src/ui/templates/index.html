@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>AudItecX Orchestrator</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      body {
+        margin: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        max-width: 48rem;
+      }
+      textarea {
+        width: 100%;
+        min-height: 160px;
+        padding: 0.75rem;
+        font-size: 1rem;
+      }
+      input[type="email"] {
+        width: 24rem;
+        max-width: 100%;
+        padding: 0.5rem;
+      }
+      button {
+        width: fit-content;
+        padding: 0.5rem 1.25rem;
+        font-size: 1rem;
+        background: #1d4ed8;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      button[disabled] {
+        opacity: 0.6;
+        cursor: wait;
+      }
+      .error {
+        color: #dc2626;
+      }
+      .panel {
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        padding: 1rem;
+        max-width: 48rem;
+        background: rgba(248, 250, 252, 0.8);
+      }
+      .summary {
+        white-space: pre-wrap;
+        background: #0f172a;
+        color: #f8fafc;
+        padding: 1rem;
+        border-radius: 6px;
+        max-height: 320px;
+        overflow-y: auto;
+      }
+      .meta {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        margin-bottom: 1rem;
+      }
+      .actions {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      a.button-link {
+        padding: 0.5rem 1rem;
+        background: #10b981;
+        color: #fff;
+        border-radius: 4px;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>AudItecX Natural Language Orchestrator</h1>
+      <p>Submit a request describing the reconciliation or audit task you would like AudItecX to run. Progress will stream in real time.</p>
+    </header>
+
+    <form id="query-form">
+      <label for="query-text">Natural language request</label>
+      <textarea id="query-text" name="text" required placeholder="Example: Compare Q2 invoices to ledger entries and highlight any mismatches over $500."></textarea>
+
+      <label for="query-email">Notification email (optional)</label>
+      <input type="email" id="query-email" name="email" placeholder="auditor@example.com">
+
+      <div class="actions">
+        <button type="submit" id="run-button">Run audit</button>
+        <span id="status" role="status"></span>
+      </div>
+    </form>
+
+    <section class="panel" hidden id="run-panel">
+      <div class="meta">
+        <strong>Run ID:</strong>
+        <span id="run-id"></span>
+      </div>
+      <div id="error" class="meta error" hidden></div>
+      <h2>Streaming summary</h2>
+      <pre class="summary" id="summary"></pre>
+      <div class="meta">
+        <strong>Manifest:</strong>
+        <span id="manifest-path">Pending…</span>
+      </div>
+      <div class="actions" id="post-run-actions" hidden>
+        <a id="download-link" class="button-link" href="#" download>Download package</a>
+        <button id="send-button" type="button">Send via email</button>
+      </div>
+    </section>
+
+    <script>
+      const form = document.getElementById('query-form');
+      const runButton = document.getElementById('run-button');
+      const statusEl = document.getElementById('status');
+      const runPanel = document.getElementById('run-panel');
+      const runIdEl = document.getElementById('run-id');
+      const summaryEl = document.getElementById('summary');
+      const manifestEl = document.getElementById('manifest-path');
+      const errorEl = document.getElementById('error');
+      const postRunActions = document.getElementById('post-run-actions');
+      const downloadLink = document.getElementById('download-link');
+      const sendButton = document.getElementById('send-button');
+      const emailField = document.getElementById('query-email');
+
+      let currentSource = null;
+      let currentRunId = null;
+
+      function resetUI() {
+        if (currentSource) {
+          currentSource.close();
+          currentSource = null;
+        }
+        runPanel.hidden = false;
+        summaryEl.textContent = '';
+        manifestEl.textContent = 'Pending…';
+        postRunActions.hidden = true;
+        downloadLink.href = '#';
+        downloadLink.removeAttribute('data-run');
+        sendButton.disabled = false;
+        statusEl.textContent = 'Submitting request…';
+        errorEl.hidden = true;
+        errorEl.textContent = '';
+      }
+
+      async function submitQuery(evt) {
+        evt.preventDefault();
+        const text = form.querySelector('#query-text').value.trim();
+        const email = emailField.value.trim();
+        if (!text) {
+          statusEl.textContent = 'Please provide a request.';
+          return;
+        }
+
+        resetUI();
+        runButton.disabled = true;
+
+        try {
+          const response = await fetch('/api/nl_query', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text, email })
+          });
+
+          if (!response.ok) {
+            const problem = await response.json().catch(() => ({ error: response.statusText }));
+            throw new Error(problem.error || 'Request failed');
+          }
+
+          const payload = await response.json();
+          currentRunId = payload.run_id;
+          runIdEl.textContent = currentRunId;
+          statusEl.textContent = 'Running…';
+
+          const streamUrl = payload.stream_url;
+          currentSource = new EventSource(streamUrl);
+          currentSource.onmessage = handleEvent;
+          currentSource.addEventListener('end', handleCompleteEvent);
+          currentSource.onerror = () => {
+            statusEl.textContent = 'Stream connection lost';
+            currentSource.close();
+          };
+        } catch (err) {
+          statusEl.textContent = '';
+          errorEl.hidden = false;
+          errorEl.textContent = err.message || 'Failed to start run';
+          runButton.disabled = false;
+        }
+      }
+
+      function handleEvent(event) {
+        try {
+          const payload = JSON.parse(event.data);
+          const { event: kind, payload: data } = payload;
+
+          switch (kind) {
+            case 'status':
+              statusEl.textContent = data.message;
+              break;
+            case 'summary_chunk':
+              summaryEl.textContent += data.text;
+              summaryEl.scrollTop = summaryEl.scrollHeight;
+              break;
+            case 'complete':
+              statusEl.textContent = 'Run complete';
+              manifestEl.textContent = data.manifest_path || 'Not generated';
+              if (data.package_path) {
+                const href = `/api/download/${currentRunId}`;
+                downloadLink.href = href;
+                downloadLink.dataset.run = currentRunId;
+                postRunActions.hidden = false;
+              }
+              runButton.disabled = false;
+              break;
+            case 'error':
+              statusEl.textContent = '';
+              errorEl.hidden = false;
+              errorEl.textContent = data.message || 'Unknown error';
+              runButton.disabled = false;
+              break;
+          }
+        } catch (err) {
+          console.error('Failed to handle event', err);
+        }
+      }
+
+      function handleCompleteEvent() {
+        statusEl.textContent = 'Run completed';
+        runButton.disabled = false;
+        if (currentSource) {
+          currentSource.close();
+        }
+      }
+
+      async function confirmSend() {
+        const recipient = emailField.value.trim();
+        if (!currentRunId || !recipient) {
+          statusEl.textContent = 'Provide an email before sending.';
+          return;
+        }
+        sendButton.disabled = true;
+        statusEl.textContent = 'Sending package…';
+        try {
+          const response = await fetch('/api/confirm_send', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ run_id: currentRunId, email: recipient })
+          });
+          if (!response.ok) {
+            const problem = await response.json().catch(() => ({ error: response.statusText }));
+            throw new Error(problem.error || 'Send failed');
+          }
+          statusEl.textContent = 'Package sent';
+        } catch (err) {
+          statusEl.textContent = '';
+          errorEl.hidden = false;
+          errorEl.textContent = err.message || 'Failed to send package';
+        } finally {
+          sendButton.disabled = false;
+        }
+      }
+
+      form.addEventListener('submit', submitQuery);
+      sendButton.addEventListener('click', confirmSend);
+    </script>
+  </body>
+</html>

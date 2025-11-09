@@ -1,0 +1,14 @@
+Document Type: Invoice
+Manifest Ref: DOC-INV-2003
+Vendor ID: VEND-100
+Vendor Name: Apex Office Supply Co.
+Invoice ID: INV-2003
+PO ID: PO-502
+Document Date: 2024-07-28
+Amount: 480.00
+Currency: USD
+
+Line Items:
+- Printer maintenance agreement (Q3) - 480.00
+
+Notes: Scheduled service windows in August.

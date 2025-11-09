@@ -1,0 +1,13 @@
+Document Type: Invoice
+Manifest Ref: DOC-INV-4105
+Vendor ID: VEND-102
+Vendor Name: TechFuture Hardware
+Invoice ID: INV-4105
+PO ID: PO-889
+Document Date: 2024-06-20
+Amount: 1999.99
+Currency: USD
+
+Line Items:
+- Network switches (3) - 1,500.00
+- Rack accessories - 499.99

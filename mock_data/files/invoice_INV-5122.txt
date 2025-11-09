@@ -1,0 +1,11 @@
+Document Type: Invoice
+Manifest Ref: DOC-INV-5122
+Vendor ID: VEND-103
+Vendor Name: RapidLogix Transport
+Invoice ID: INV-5122
+PO ID: PO-990
+Document Date: 2024-07-10
+Amount: 1525.75
+Currency: USD
+
+Logistics services: July deliveries for manufacturing inputs.

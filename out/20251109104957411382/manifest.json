@@ -1,0 +1,50 @@
+{
+  "run_id": "20251109104957411382",
+  "intent": {
+    "intent": "general_query",
+    "entities": {
+      "vendor_ids": [
+        "VEND-103"
+      ],
+      "invoice_ids": [],
+      "po_ids": [],
+      "date_range": {
+        "from": null,
+        "to": null
+      },
+      "actions": []
+    },
+    "raw": "I want to do the audit for vendor VEND-103 and give me the status of the audit result here"
+  },
+  "plan": [
+    {
+      "step": 1,
+      "task": "router.determine",
+      "description": "Evaluate request details"
+    }
+  ],
+  "context": {
+    "run_id": "20251109104957411382",
+    "intent": {
+      "intent": "general_query",
+      "entities": {
+        "vendor_ids": [
+          "VEND-103"
+        ],
+        "invoice_ids": [],
+        "po_ids": [],
+        "date_range": {
+          "from": null,
+          "to": null
+        },
+        "actions": []
+      },
+      "raw": "I want to do the audit for vendor VEND-103 and give me the status of the audit result here"
+    },
+    "identifiers": [
+      "VEND-103"
+    ]
+  },
+  "dry_run": false,
+  "confirm_send": false
+}

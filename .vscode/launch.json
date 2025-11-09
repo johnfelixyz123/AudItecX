@@ -1,0 +1,31 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch Flask App",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/src/app.py",
+      "console": "integratedTerminal",
+      "env": {
+        "FLASK_DEBUG": "1"
+      }
+    },
+    {
+      "name": "Run CLI Aggregator",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/src/cli.py",
+      "console": "integratedTerminal",
+      "args": ["VEND-100,INV-2002"]
+    },
+    {
+      "name": "Pytest",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    }
+  ]
+}

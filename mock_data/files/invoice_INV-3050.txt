@@ -1,0 +1,11 @@
+Document Type: Invoice
+Manifest Ref: DOC-INV-3050
+Vendor ID: VEND-101
+Vendor Name: Northwind Consulting LLC
+Invoice ID: INV-3050
+PO ID: PO-778
+Document Date: 2024-07-12
+Amount: 845.50
+Currency: USD
+
+Services: Business process review - milestone 1.

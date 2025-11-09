@@ -1,0 +1,428 @@
+{
+  "run_id": "20251109122018094793",
+  "intent": {
+    "intent": "generate_package",
+    "entities": {
+      "vendor_ids": [
+        "VEND-100"
+      ],
+      "invoice_ids": [
+        "INV-2002"
+      ],
+      "po_ids": [],
+      "date_range": {
+        "from": null,
+        "to": null
+      },
+      "actions": [
+        "send",
+        "package"
+      ]
+    },
+    "raw": "Prepare the audit evidence package for vendor VEND-100 and invoice INV-2002 and email it to auditor@example.com."
+  },
+  "plan": [
+    {
+      "step": 1,
+      "task": "doc.find_docs",
+      "description": "Collect supporting documents"
+    },
+    {
+      "step": 2,
+      "task": "data.query_journal",
+      "description": "Fetch ledger entries"
+    },
+    {
+      "step": 3,
+      "task": "match.reconcile",
+      "description": "Reconcile documents and journal"
+    },
+    {
+      "step": 4,
+      "task": "summary.stream_summary",
+      "description": "Draft auditor summary"
+    },
+    {
+      "step": 5,
+      "task": "notify.prepare_package",
+      "description": "Prepare package and notifications"
+    }
+  ],
+  "context": {
+    "run_id": "20251109122018094793",
+    "intent": {
+      "intent": "generate_package",
+      "entities": {
+        "vendor_ids": [
+          "VEND-100"
+        ],
+        "invoice_ids": [
+          "INV-2002"
+        ],
+        "po_ids": [],
+        "date_range": {
+          "from": null,
+          "to": null
+        },
+        "actions": [
+          "send",
+          "package"
+        ]
+      },
+      "raw": "Prepare the audit evidence package for vendor VEND-100 and invoice INV-2002 and email it to auditor@example.com."
+    },
+    "identifiers": [
+      "VEND-100",
+      "INV-2002"
+    ],
+    "documents": [
+      {
+        "filename": "grn_PO-501_receipt.txt",
+        "path": "/Users/j0f0crt/Documents/My workspace/Auditecx/mock_data/files/grn_PO-501_receipt.txt",
+        "doc_type": "Goods Receipt",
+        "vendor_id": "VEND-100",
+        "vendor_name": "Apex Office Supply Co.",
+        "invoice_id": "INV-2002",
+        "po_id": "PO-501",
+        "date": "2024-07-18",
+        "amount": 0.0,
+        "currency": "USD",
+        "text": "",
+        "manifest_ref": "DOC-GRN-501",
+        "confidence": 0.9
+      },
+      {
+        "filename": "invoice_INV-2002.txt",
+        "path": "/Users/j0f0crt/Documents/My workspace/Auditecx/mock_data/files/invoice_INV-2002.txt",
+        "doc_type": "Invoice",
+        "vendor_id": "VEND-100",
+        "vendor_name": "Apex Office Supply Co.",
+        "invoice_id": "INV-2002",
+        "po_id": "PO-501",
+        "date": "2024-07-15",
+        "amount": 1250.0,
+        "currency": "USD",
+        "text": "Line Items:\n- Ergonomic chairs (5) - 750.00\n- Adjustable desks (2) - 500.00",
+        "manifest_ref": "DOC-INV-2002",
+        "confidence": 0.9
+      },
+      {
+        "filename": "invoice_INV-2003.txt",
+        "path": "/Users/j0f0crt/Documents/My workspace/Auditecx/mock_data/files/invoice_INV-2003.txt",
+        "doc_type": "Invoice",
+        "vendor_id": "VEND-100",
+        "vendor_name": "Apex Office Supply Co.",
+        "invoice_id": "INV-2003",
+        "po_id": "PO-502",
+        "date": "2024-07-28",
+        "amount": 480.0,
+        "currency": "USD",
+        "text": "Line Items:\n- Printer maintenance agreement (Q3) - 480.00",
+        "manifest_ref": "DOC-INV-2003",
+        "confidence": 0.9
+      },
+      {
+        "filename": "po_PO-501.txt",
+        "path": "/Users/j0f0crt/Documents/My workspace/Auditecx/mock_data/files/po_PO-501.txt",
+        "doc_type": "Purchase Order",
+        "vendor_id": "VEND-100",
+        "vendor_name": "Apex Office Supply Co.",
+        "invoice_id": "INV-2002",
+        "po_id": "PO-501",
+        "date": "2024-07-01",
+        "amount": 1250.0,
+        "currency": "USD",
+        "text": "Line Items:\n- Ergonomic chairs (5) - 750.00\n- Adjustable desks (2) - 500.00",
+        "manifest_ref": "DOC-PO-501",
+        "confidence": 0.9
+      }
+    ],
+    "journal_entries": [
+      {
+        "entry_id": "JE-0001",
+        "vendor_id": "VEND-100",
+        "vendor_name": "",
+        "invoice_id": "INV-2002",
+        "po_id": "PO-501",
+        "amount": 1250.0,
+        "currency": "USD",
+        "status": "recorded",
+        "posting_date": "2024-07-20"
+      },
+      {
+        "entry_id": "JE-0004",
+        "vendor_id": "VEND-100",
+        "vendor_name": "",
+        "invoice_id": "INV-2003",
+        "po_id": "PO-502",
+        "amount": 480.0,
+        "currency": "USD",
+        "status": "recorded",
+        "posting_date": "2024-08-05"
+      }
+    ],
+    "matches": [
+      {
+        "ledger_entry": {
+          "entry_id": "JE-0001",
+          "vendor_id": "VEND-100",
+          "vendor_name": "",
+          "invoice_id": "INV-2002",
+          "po_id": "PO-501",
+          "amount": 1250.0,
+          "currency": "USD",
+          "status": "recorded",
+          "posting_date": "2024-07-20"
+        },
+        "documents": [
+          {
+            "document": {
+              "filename": "invoice_INV-2002.txt",
+              "path": "/Users/j0f0crt/Documents/My workspace/Auditecx/mock_data/files/invoice_INV-2002.txt",
+              "doc_type": "Invoice",
+              "vendor_id": "VEND-100",
+              "vendor_name": "Apex Office Supply Co.",
+              "invoice_id": "INV-2002",
+              "po_id": "PO-501",
+              "date": "2024-07-15",
+              "amount": 1250.0,
+              "currency": "USD",
+              "text": "Line Items:\n- Ergonomic chairs (5) - 750.00\n- Adjustable desks (2) - 500.00",
+              "manifest_ref": "DOC-INV-2002",
+              "confidence": 0.9
+            },
+            "rationale": [
+              "ID match on PO-501, VEND-100, INV-2002",
+              "Amount within tolerance (\u0394=0.00)",
+              "Date within \u00b17 days"
+            ]
+          }
+        ]
+      }
+    ],
+    "anomalies": [
+      {
+        "ledger_entry": {
+          "entry_id": "JE-0001",
+          "vendor_id": "VEND-100",
+          "vendor_name": "",
+          "invoice_id": "INV-2002",
+          "po_id": "PO-501",
+          "amount": 1250.0,
+          "currency": "USD",
+          "status": "recorded",
+          "posting_date": "2024-07-20"
+        },
+        "document": {
+          "filename": "grn_PO-501_receipt.txt",
+          "path": "/Users/j0f0crt/Documents/My workspace/Auditecx/mock_data/files/grn_PO-501_receipt.txt",
+          "doc_type": "Goods Receipt",
+          "vendor_id": "VEND-100",
+          "vendor_name": "Apex Office Supply Co.",
+          "invoice_id": "INV-2002",
+          "po_id": "PO-501",
+          "date": "2024-07-18",
+          "amount": 0.0,
+          "currency": "USD",
+          "text": "",
+          "manifest_ref": "DOC-GRN-501",
+          "confidence": 0.9
+        },
+        "reason": "Amount delta 1250.00 exceeds tolerance 12.50"
+      },
+      {
+        "ledger_entry": {
+          "entry_id": "JE-0001",
+          "vendor_id": "VEND-100",
+          "vendor_name": "",
+          "invoice_id": "INV-2002",
+          "po_id": "PO-501",
+          "amount": 1250.0,
+          "currency": "USD",
+          "status": "recorded",
+          "posting_date": "2024-07-20"
+        },
+        "document": {
+          "filename": "invoice_INV-2003.txt",
+          "path": "/Users/j0f0crt/Documents/My workspace/Auditecx/mock_data/files/invoice_INV-2003.txt",
+          "doc_type": "Invoice",
+          "vendor_id": "VEND-100",
+          "vendor_name": "Apex Office Supply Co.",
+          "invoice_id": "INV-2003",
+          "po_id": "PO-502",
+          "date": "2024-07-28",
+          "amount": 480.0,
+          "currency": "USD",
+          "text": "Line Items:\n- Printer maintenance agreement (Q3) - 480.00",
+          "manifest_ref": "DOC-INV-2003",
+          "confidence": 0.9
+        },
+        "reason": "Amount delta 770.00 exceeds tolerance 12.50"
+      },
+      {
+        "ledger_entry": {
+          "entry_id": "JE-0001",
+          "vendor_id": "VEND-100",
+          "vendor_name": "",
+          "invoice_id": "INV-2002",
+          "po_id": "PO-501",
+          "amount": 1250.0,
+          "currency": "USD",
+          "status": "recorded",
+          "posting_date": "2024-07-20"
+        },
+        "document": {
+          "filename": "po_PO-501.txt",
+          "path": "/Users/j0f0crt/Documents/My workspace/Auditecx/mock_data/files/po_PO-501.txt",
+          "doc_type": "Purchase Order",
+          "vendor_id": "VEND-100",
+          "vendor_name": "Apex Office Supply Co.",
+          "invoice_id": "INV-2002",
+          "po_id": "PO-501",
+          "date": "2024-07-01",
+          "amount": 1250.0,
+          "currency": "USD",
+          "text": "Line Items:\n- Ergonomic chairs (5) - 750.00\n- Adjustable desks (2) - 500.00",
+          "manifest_ref": "DOC-PO-501",
+          "confidence": 0.9
+        },
+        "reason": "Amount within tolerance (\u0394=0.00)"
+      },
+      {
+        "ledger_entry": {
+          "entry_id": "JE-0004",
+          "vendor_id": "VEND-100",
+          "vendor_name": "",
+          "invoice_id": "INV-2003",
+          "po_id": "PO-502",
+          "amount": 480.0,
+          "currency": "USD",
+          "status": "recorded",
+          "posting_date": "2024-08-05"
+        },
+        "document": {
+          "filename": "grn_PO-501_receipt.txt",
+          "path": "/Users/j0f0crt/Documents/My workspace/Auditecx/mock_data/files/grn_PO-501_receipt.txt",
+          "doc_type": "Goods Receipt",
+          "vendor_id": "VEND-100",
+          "vendor_name": "Apex Office Supply Co.",
+          "invoice_id": "INV-2002",
+          "po_id": "PO-501",
+          "date": "2024-07-18",
+          "amount": 0.0,
+          "currency": "USD",
+          "text": "",
+          "manifest_ref": "DOC-GRN-501",
+          "confidence": 0.9
+        },
+        "reason": "Amount delta 480.00 exceeds tolerance 4.80"
+      },
+      {
+        "ledger_entry": {
+          "entry_id": "JE-0004",
+          "vendor_id": "VEND-100",
+          "vendor_name": "",
+          "invoice_id": "INV-2003",
+          "po_id": "PO-502",
+          "amount": 480.0,
+          "currency": "USD",
+          "status": "recorded",
+          "posting_date": "2024-08-05"
+        },
+        "document": {
+          "filename": "invoice_INV-2002.txt",
+          "path": "/Users/j0f0crt/Documents/My workspace/Auditecx/mock_data/files/invoice_INV-2002.txt",
+          "doc_type": "Invoice",
+          "vendor_id": "VEND-100",
+          "vendor_name": "Apex Office Supply Co.",
+          "invoice_id": "INV-2002",
+          "po_id": "PO-501",
+          "date": "2024-07-15",
+          "amount": 1250.0,
+          "currency": "USD",
+          "text": "Line Items:\n- Ergonomic chairs (5) - 750.00\n- Adjustable desks (2) - 500.00",
+          "manifest_ref": "DOC-INV-2002",
+          "confidence": 0.9
+        },
+        "reason": "Amount delta 770.00 exceeds tolerance 4.80"
+      },
+      {
+        "ledger_entry": {
+          "entry_id": "JE-0004",
+          "vendor_id": "VEND-100",
+          "vendor_name": "",
+          "invoice_id": "INV-2003",
+          "po_id": "PO-502",
+          "amount": 480.0,
+          "currency": "USD",
+          "status": "recorded",
+          "posting_date": "2024-08-05"
+        },
+        "document": {
+          "filename": "invoice_INV-2003.txt",
+          "path": "/Users/j0f0crt/Documents/My workspace/Auditecx/mock_data/files/invoice_INV-2003.txt",
+          "doc_type": "Invoice",
+          "vendor_id": "VEND-100",
+          "vendor_name": "Apex Office Supply Co.",
+          "invoice_id": "INV-2003",
+          "po_id": "PO-502",
+          "date": "2024-07-28",
+          "amount": 480.0,
+          "currency": "USD",
+          "text": "Line Items:\n- Printer maintenance agreement (Q3) - 480.00",
+          "manifest_ref": "DOC-INV-2003",
+          "confidence": 0.9
+        },
+        "reason": "Amount within tolerance (\u0394=0.00)"
+      },
+      {
+        "ledger_entry": {
+          "entry_id": "JE-0004",
+          "vendor_id": "VEND-100",
+          "vendor_name": "",
+          "invoice_id": "INV-2003",
+          "po_id": "PO-502",
+          "amount": 480.0,
+          "currency": "USD",
+          "status": "recorded",
+          "posting_date": "2024-08-05"
+        },
+        "document": {
+          "filename": "po_PO-501.txt",
+          "path": "/Users/j0f0crt/Documents/My workspace/Auditecx/mock_data/files/po_PO-501.txt",
+          "doc_type": "Purchase Order",
+          "vendor_id": "VEND-100",
+          "vendor_name": "Apex Office Supply Co.",
+          "invoice_id": "INV-2002",
+          "po_id": "PO-501",
+          "date": "2024-07-01",
+          "amount": 1250.0,
+          "currency": "USD",
+          "text": "Line Items:\n- Ergonomic chairs (5) - 750.00\n- Adjustable desks (2) - 500.00",
+          "manifest_ref": "DOC-PO-501",
+          "confidence": 0.9
+        },
+        "reason": "Amount delta 770.00 exceeds tolerance 4.80"
+      },
+      {
+        "ledger_entry": {
+          "entry_id": "JE-0004",
+          "vendor_id": "VEND-100",
+          "vendor_name": "",
+          "invoice_id": "INV-2003",
+          "po_id": "PO-502",
+          "amount": 480.0,
+          "currency": "USD",
+          "status": "recorded",
+          "posting_date": "2024-08-05"
+        },
+        "document": null,
+        "reason": "No supporting document found"
+      }
+    ],
+    "summary_text": "Focus on vendors: VEND-100. Invoices involved: INV-2002, INV-2003. Additional codes: GRN-501, INV-2002, INV-2003, VEND-100.-- End of mock stream --",
+    "package_path": "/Users/j0f0crt/Documents/My workspace/Auditecx/out/package_20251109122018094793.zip"
+  },
+  "dry_run": false,
+  "confirm_send": false
+}

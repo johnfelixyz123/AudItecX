@@ -1,0 +1,11 @@
+Document Type: Invoice
+Manifest Ref: DOC-INV-6201
+Vendor ID: VEND-104
+Vendor Name: CleanSweep Facilities
+Invoice ID: INV-6201
+PO ID: PO-120
+Document Date: 2024-07-19
+Amount: 930.40
+Currency: USD
+
+Services: Facility cleaning for July.

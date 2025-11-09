@@ -1,0 +1,98 @@
+[
+  {
+    "query": "Prepare audit evidence for Vendor VEND-100 for Q3 2025 and highlight late payments.",
+    "parsed_intent": {
+      "intent": "prepare_audit_evidence",
+      "entities": {
+        "vendors": ["VEND-100"],
+        "invoices": [],
+        "purchase_orders": [],
+        "quarters": ["Q3 2025"],
+        "years": ["2025"],
+        "focus": "late_payments",
+        "include_journal": false,
+        "send_to": []
+      }
+    }
+  },
+  {
+    "query": "Get me invoices INV-1001 and INV-2002 and include journal entries; send to auditor@example.com.",
+    "parsed_intent": {
+      "intent": "collect_and_share_invoices",
+      "entities": {
+        "vendors": [],
+        "invoices": ["INV-1001", "INV-2002"],
+        "purchase_orders": [],
+        "quarters": [],
+        "years": [],
+        "focus": null,
+        "include_journal": true,
+        "send_to": ["auditor@example.com"]
+      }
+    }
+  },
+  {
+    "query": "Summarize risk findings for supplier VEND-222 with purchase order PO-7789 covering fiscal 2024.",
+    "parsed_intent": {
+      "intent": "assess_risks",
+      "entities": {
+        "vendors": ["VEND-222"],
+        "invoices": [],
+        "purchase_orders": ["PO-7789"],
+        "quarters": [],
+        "years": ["2024"],
+        "focus": "compliance",
+        "include_journal": false,
+        "send_to": []
+      }
+    }
+  },
+  {
+    "query": "Compile a compliance report for invoices INV-3000 and INV-3001, include supporting journal entries, and notify lead.auditor@auditecx.io.",
+    "parsed_intent": {
+      "intent": "summarize_findings",
+      "entities": {
+        "vendors": [],
+        "invoices": ["INV-3000", "INV-3001"],
+        "purchase_orders": [],
+        "quarters": [],
+        "years": [],
+        "focus": "compliance",
+        "include_journal": true,
+        "send_to": ["lead.auditor@auditecx.io"]
+      }
+    }
+  },
+  {
+    "query": "Provide a general audit summary for vendor VEND-555 and invoice INV-9100 with any detected anomalies.",
+    "parsed_intent": {
+      "intent": "summarize_findings",
+      "entities": {
+        "vendors": ["VEND-555"],
+        "invoices": ["INV-9100"],
+        "purchase_orders": [],
+        "quarters": [],
+        "years": [],
+        "focus": "anomalies",
+        "include_journal": false,
+        "send_to": []
+      }
+    }
+  },
+  {
+    "query": "Gather documents for purchase orders PO-1000 and PO-1001 and send the package to review-team@auditecx.io by referencing any related vendor records.",
+    "parsed_intent": {
+      "intent": "gather_documents",
+      "entities": {
+        "vendors": [],
+        "invoices": [],
+        "purchase_orders": ["PO-1000", "PO-1001"],
+        "quarters": [],
+        "years": [],
+        "focus": null,
+        "include_journal": false,
+        "send_to": ["review-team@auditecx.io"]
+      }
+    }
+  }
+]
