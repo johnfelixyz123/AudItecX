@@ -118,6 +118,10 @@ AudItecX/
    pytest tests/
    ```
 ##  Agents Orchestration
+
+<p align="center">
+  <img src="/Users/j0f0crt/Downloads/my_img.png" width="300" alt="Agent Orchestration">
+</p>
                      ┌────────────────────────────────────────────┐
                      │           MASTER ORCHESTRATOR               │
                      │   (Natural Language Intent & Planning)      │
