@@ -1,0 +1,13 @@
+DOCUMENT TYPE: PURCHASE ORDER
+VENDOR_ID: VEND-106
+VENDOR_NAME: Orion Industrial Parts
+PO_ID: PO-611
+ISSUE_DATE: 2025-01-30
+AMOUNT: 15000.00
+CURRENCY: USD
+DESCRIPTION: Precision bearings restock for line 3 press
+APPROVER: Maintenance Procurement Lead
+--OCR TEXT--
+Line items include 300 precision bearings, 20 gearbox kits, and packaging.
+Payment terms: Net 30 with 2% discount if paid within 10 days.
+Expedite shipping requires separate approval prior to invoicing.

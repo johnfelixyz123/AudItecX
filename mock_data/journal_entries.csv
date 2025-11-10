@@ -5,3 +5,33 @@ JE-0003,VEND-102,INV-4105,PO-889,2024-06-30,1999.99,USD,Hardware replacement bat
 JE-0004,VEND-100,INV-2003,PO-502,2024-08-05,480.00,USD,Printer maintenance contract Q3
 JE-0005,VEND-103,INV-5122,PO-990,2024-07-18,1525.75,USD,Logistics services for July
 JE-0006,VEND-104,INV-6201,PO-120,2024-07-25,930.40,USD,Facility cleaning invoice
+JE-0007,VEND-105,INV-7001,PO-610,2025-02-20,4200.00,USD,Accrual for analytics sprint deliverable
+JE-0008,VEND-106,INV-7002,PO-611,2025-02-25,15875.00,USD,Machinery parts shipment with expedite surcharge
+JE-0009,VEND-107,INV-7003,PO-612,2025-02-28,9800.00,USD,LED retrofit invoice recorded in USD pending FX
+JE-0010,VEND-106,INV-7002,PO-611,2025-03-10,15875.00,USD,Duplicate accrual detected during month close
+JE-0011,VEND-108,INV-7004,PO-613,2025-03-07,1250.00,USD,Catering summit invoice
+JE-0012,VEND-109,INV-7005,PO-614,2025-03-12,4800.00,USD,Supplier summit airfare block
+JE-0013,VEND-110,INV-7006,PO-615,2025-03-18,2890.00,USD,Courier services March cycle
+JE-0014,VEND-111,INV-7007,PO-616,2025-03-22,13350.00,USD,Lab supplies calibration kits
+JE-0015,VEND-105,INV-7008,PO-617,2025-04-01,7650.00,USD,Data governance sprint milestone
+JE-0016,VEND-105,INV-7009,PO-610,2025-04-05,1350.00,USD,Backlog grooming add-on
+JE-0017,VEND-107,INV-7010,PO-612,2025-04-12,10850.00,USD,Lighting retrofit change order exceeds PO
+JE-0018,VEND-109,INV-7011,,2025-04-20,2150.00,USD,Unmatched travel change fees no PO
+JE-0019,VEND-110,INV-7012,PO-615,2025-04-21,2750.00,USD,Courier standby retainer accrual
+JE-0020,VEND-105,INV-7001,PO-610,2025-03-01,4200.00,USD,Payment recorded via ACH batch
+JE-0021,VEND-106,INV-7002,PO-611,2025-03-15,15875.00,USD,Wire settlement for bearings invoice
+JE-0022,VEND-107,INV-7003,PO-612,2025-03-18,9800.00,USD,FX gross-up recorded without conversion entry
+JE-0023,VEND-109,INV-7005,PO-614,2025-04-05,5200.00,USD,Corporate card settlement overage
+JE-0024,VEND-110,INV-7006,PO-615,2025-03-25,2890.00,USD,ACH payment for courier routes
+JE-0025,VEND-111,INV-7007,PO-616,2025-04-02,13350.00,USD,Payment cleared for calibration kits
+JE-0026,VEND-105,INV-7008,PO-617,2025-04-08,3800.00,USD,Partial payment for data governance sprint
+JE-0027,VEND-105,INV-7008,PO-617,2025-04-18,3850.00,USD,Final payment for data governance sprint
+JE-0028,VEND-105,INV-7009,PO-610,2025-04-15,1350.00,USD,Payment for backlog grooming add-on
+JE-0029,VEND-107,INV-7010,PO-612,2025-04-22,4850.00,USD,Partial payment 1 for retrofit change order
+JE-0030,VEND-109,INV-7011,,2025-04-14,2300.00,USD,Prepayment entered before invoice receipt
+JE-0031,VEND-110,INV-7012,PO-615,2025-04-28,2750.00,USD,ACH payment for courier retainer
+JE-0032,VEND-106,,PO-611,2025-03-28,4500.00,USD,Inventory adjustment for damaged bearings
+JE-0033,VEND-108,INV-7004,PO-613,2025-03-29,1250.00,USD,Payment cleared via card settlement
+JE-0034,VEND-111,,PO-616,2025-04-03,650.00,USD,Restocking fee pending vendor credit
+JE-0035,VEND-107,INV-7010,PO-612,2025-05-02,6000.00,USD,Partial payment 2 for retrofit change order
+JE-0036,VEND-109,INV-7011,,2025-05-01,2000.00,USD,Travel credit memo posted as payment

@@ -1,0 +1,11 @@
+Document Type: Goods Receipt
+Manifest Ref: DOC-GRN-501
+Vendor ID: VEND-100
+Vendor Name: Apex Office Supply Co.
+Invoice ID: INV-2002
+PO ID: PO-501
+Document Date: 2024-07-18
+Amount: 0.00
+Currency: USD
+
+Notes: Shipment delivered in full. Quality check completed by warehouse team.

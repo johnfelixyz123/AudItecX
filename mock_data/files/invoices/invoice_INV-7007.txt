@@ -1,0 +1,14 @@
+DOCUMENT TYPE: INVOICE
+VENDOR_ID: VEND-111
+VENDOR_NAME: Precision Lab Supplies
+INVOICE_ID: INV-7007
+PO_ID: PO-616
+DATE: 2025-03-20
+AMOUNT: 13350.00
+CURRENCY: USD
+PAYMENT_TERMS: NET30
+DESCRIPTION: Micro-pipette calibration kits and QA reagents
+--OCR TEXT--
+Lot numbers MPL-5520 through MPL-5534 delivered 2025-03-18.
+Quality certificates attached; two kits noted with minor cosmetic scuffs.
+Request created by lab QA manager per ticket QAL-883.

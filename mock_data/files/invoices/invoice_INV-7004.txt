@@ -1,0 +1,14 @@
+DOCUMENT TYPE: INVOICE
+VENDOR_ID: VEND-108
+VENDOR_NAME: BlueRiver Catering
+INVOICE_ID: INV-7004
+PO_ID: PO-613
+DATE: 2025-03-05
+AMOUNT: 1250.00
+CURRENCY: USD
+PAYMENT_TERMS: NET15
+DESCRIPTION: Leadership summit catering on 2025-02-28
+--OCR TEXT--
+Service covers breakfast, lunch, and refreshment set for 45 attendees.
+Includes gluten-free and vegan menu options per HR order.
+Signed banquet event order BEO-3321 attached via email.

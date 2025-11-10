@@ -1,0 +1,13 @@
+DOCUMENT TYPE: GOODS RECEIPT NOTE
+VENDOR_ID: VEND-109
+VENDOR_NAME: Saffron Travel Desk
+GRN_ID: GRN-4005
+PO_ID: PO-614
+RECEIPT_DATE: 2025-03-09
+QUANTITY_RECEIVED: Services Scheduled
+QUALITY_STATUS: Accepted with reservations
+WAREHOUSE: Travel Program Office
+--OCR TEXT--
+Travel desk provided itinerary confirmations for eight travelers.
+Two itineraries flagged for missing pre-trip approvals; awaiting manager sign-off.
+Finance requested PO balance check before subsequent change fees.

@@ -1,0 +1,13 @@
+DOCUMENT TYPE: PURCHASE ORDER
+VENDOR_ID: VEND-105
+VENDOR_NAME: Northwind IT Services
+PO_ID: PO-617
+ISSUE_DATE: 2025-03-05
+AMOUNT: 7600.00
+CURRENCY: USD
+DESCRIPTION: Data governance implementation sprint 1
+APPROVER: Chief Data Officer
+--OCR TEXT--
+Milestone deliverables: policy matrix, glossary updates, training sessions.
+Includes optional automation scripting not to exceed 120 billable hours.
+Change requests require sign-off by enterprise data governance council.

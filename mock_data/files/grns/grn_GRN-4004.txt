@@ -1,0 +1,13 @@
+DOCUMENT TYPE: GOODS RECEIPT NOTE
+VENDOR_ID: VEND-105
+VENDOR_NAME: Northwind IT Services
+GRN_ID: GRN-4004
+PO_ID: PO-617
+RECEIPT_DATE: 2025-03-27
+QUANTITY_RECEIVED: Services Completed
+QUALITY_STATUS: Accepted
+WAREHOUSE: Digital PMO
+--OCR TEXT--
+Project manager confirmed sprint 1 deliverables met acceptance criteria.
+Training attendance sheet and policy matrix attached to project record.
+No outstanding issues; move to invoicing per milestone checklist.

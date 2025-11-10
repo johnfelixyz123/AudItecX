@@ -1,0 +1,14 @@
+DOCUMENT TYPE: INVOICE
+VENDOR_ID: VEND-106
+VENDOR_NAME: Orion Industrial Parts
+INVOICE_ID: INV-7002
+PO_ID: PO-611
+DATE: 2025-02-18
+AMOUNT: 15875.00
+CURRENCY: USD
+PAYMENT_TERMS: NET30
+DESCRIPTION: Precision bearings and emergency gearbox replenishment
+--OCR TEXT--
+Shipment 3 of precision bearings received at DC-04.
+Expedite surcharge applied per maintenance director request on 2025-02-15.
+Packing list references freight bill FR-8842.

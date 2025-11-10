@@ -1,0 +1,13 @@
+DOCUMENT TYPE: PAYMENT ADVICE
+VENDOR_ID: VEND-107
+VENDOR_NAME: Lumina Energy Solutions
+PAYMENT_ID: PAY-3005
+INVOICE_ID: INV-7010
+DATE: 2025-05-05
+AMOUNT: 10850.00
+CURRENCY: USD
+METHOD: ACH
+--OCR TEXT--
+ACH batch 2025-05-05-ACH-02 released per facilities escalation.
+Payment approved despite pending change order PO increase.
+Note: variance to be trued up during May accrual review.

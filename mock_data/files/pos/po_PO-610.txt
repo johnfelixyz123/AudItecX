@@ -1,0 +1,13 @@
+DOCUMENT TYPE: PURCHASE ORDER
+VENDOR_ID: VEND-105
+VENDOR_NAME: Northwind IT Services
+PO_ID: PO-610
+ISSUE_DATE: 2025-01-25
+AMOUNT: 4200.00
+CURRENCY: USD
+DESCRIPTION: Analytics optimization sprint services
+APPROVER: Director, Digital Insights
+--OCR TEXT--
+Scope: backlog analytics refactor sprint 2 (2 consultants, 80 hours).
+Billable rate locked per MSA amendment dated 2024-12-15.
+Travel and lodging excluded from PO ceiling.

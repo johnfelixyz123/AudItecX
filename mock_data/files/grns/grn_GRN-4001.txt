@@ -1,0 +1,13 @@
+DOCUMENT TYPE: GOODS RECEIPT NOTE
+VENDOR_ID: VEND-106
+VENDOR_NAME: Orion Industrial Parts
+GRN_ID: GRN-4001
+PO_ID: PO-611
+RECEIPT_DATE: 2025-02-19
+QUANTITY_RECEIVED: 100%
+QUALITY_STATUS: Damaged - 12 bearings dented
+WAREHOUSE: DC-04
+--OCR TEXT--
+Receiving inspector noted outer crate compromised on delivery.
+Twelve precision bearings flagged for vendor review and quarantine.
+Carrier exception logged under ticket CAR-55291.

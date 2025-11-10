@@ -1,0 +1,13 @@
+DOCUMENT TYPE: PURCHASE ORDER
+VENDOR_ID: VEND-107
+VENDOR_NAME: Lumina Energy Solutions
+PO_ID: PO-612
+ISSUE_DATE: 2025-01-18
+AMOUNT: 9600.00
+CURRENCY: USD
+DESCRIPTION: LED retrofit phase 1 labor and fixtures
+APPROVER: Facilities Capital Projects
+--OCR TEXT--
+Includes 30 LED panel fixtures, wiring harnesses, control modules, and labor.
+PO states invoices must be submitted in USD with conversion rate provided.
+Change orders require written approval prior to work commencing.

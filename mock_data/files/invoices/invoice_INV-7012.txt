@@ -1,0 +1,14 @@
+DOCUMENT TYPE: INVOICE
+VENDOR_ID: VEND-110
+VENDOR_NAME: Metro Courier Express
+INVOICE_ID: INV-7012
+PO_ID: PO-615
+DATE: 2025-04-22
+AMOUNT: 2750.00
+CURRENCY: USD
+PAYMENT_TERMS: NET20
+DESCRIPTION: Cold-chain courier standby retainer
+--OCR TEXT--
+Coverage for 10 standby dispatches between 2025-04-15 and 2025-04-30.
+Retainer credit offsets against future temperature-controlled runs.
+Dispatch log MCX-APR-221 attached via secure portal.

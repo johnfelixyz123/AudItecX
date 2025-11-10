@@ -1,0 +1,14 @@
+DOCUMENT TYPE: INVOICE
+VENDOR_ID: VEND-105
+VENDOR_NAME: Northwind IT Services
+INVOICE_ID: INV-7001
+PO_ID: PO-610
+DATE: 2025-02-12
+AMOUNT: 4200.00
+CURRENCY: USD
+PAYMENT_TERMS: NET30
+DESCRIPTION: Quarterly analytics optimization sprint delivery
+--OCR TEXT--
+Northwind consultants completed sprint 2 analytics enhancements.
+Includes two on-site workshops and dashboard refactoring.
+All deliverables accepted by finance analytics lead on 2025-02-11.

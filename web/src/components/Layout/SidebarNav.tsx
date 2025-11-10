@@ -15,6 +15,7 @@ import {
 import { useAuth } from '../../hooks/useAuth'
 import { ROUTES } from '../../constants/routes'
 import { cn } from '../../utils/cn'
+import { BrandMark } from '../shared/BrandMark'
 
 type NavItem = {
   label: string
@@ -61,7 +62,14 @@ export function SidebarNav({ variant = 'desktop', onNavigate, onClose }: Sidebar
       )}
     >
       <div className="flex items-center justify-between gap-3">
-        <div className={cn('text-lg font-semibold tracking-tight text-slate-700 dark:text-slate-200', collapsed && 'hidden')}>AudItecX</div>
+        <div
+          className={cn(
+            'flex items-center',
+            collapsed && isDesktop ? 'justify-center' : 'justify-start',
+          )}
+        >
+          <BrandMark compact={collapsed && isDesktop} className={collapsed && isDesktop ? 'h-8' : 'h-9'} />
+        </div>
         <div className="flex items-center gap-2">
           {isDesktop ? (
             <button

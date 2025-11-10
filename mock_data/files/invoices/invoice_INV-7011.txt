@@ -1,0 +1,14 @@
+DOCUMENT TYPE: INVOICE
+VENDOR_ID: VEND-109
+VENDOR_NAME: Saffron Travel Desk
+INVOICE_ID: INV-7011
+PO_ID: N/A
+DATE: 2025-04-18
+AMOUNT: 2150.00
+CURRENCY: USD
+PAYMENT_TERMS: DUE UPON RECEIPT
+DESCRIPTION: Last-minute itinerary change fees for supplier summit
+--OCR TEXT--
+Invoice received without associated purchase order.
+Covers three change fees and upgraded hotel deposits for executive travel.
+Travel coordinator noted urgency but PO request still pending approval.

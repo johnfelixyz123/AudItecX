@@ -1,0 +1,14 @@
+DOCUMENT TYPE: INVOICE
+VENDOR_ID: VEND-105
+VENDOR_NAME: Northwind IT Services
+INVOICE_ID: INV-7009
+PO_ID: PO-610
+DATE: 2025-04-02
+AMOUNT: 1350.00
+CURRENCY: USD
+PAYMENT_TERMS: NET15
+DESCRIPTION: Analytics sprint backlog grooming add-on
+--OCR TEXT--
+Incremental backlog triage session completed remotely on 2025-04-01.
+Two senior analysts for six hours billed at contracted rate.
+Product owner approval email reference: POA-4479.

@@ -1,0 +1,13 @@
+vendor_id,vendor_name,category,country,rating,risk_level,payment_terms,contact_email
+VEND-100,Apex Office Supply Co.,Office Supplies,USA,4.6,Low,NET15,accounts@apexofficeco.com
+VEND-101,Northwind Consulting LLC,Consulting,USA,4.2,Medium,NET30,billing@northwindconsulting.com
+VEND-102,TechFuture Hardware,Hardware,USA,4.0,Medium,NET30,ar@techfuture-hw.com
+VEND-103,RapidLogix Transport,Logistics,USA,4.4,Low,NET20,settlements@rapidlogix.com
+VEND-104,CleanSweep Facilities,Facilities Services,USA,4.1,Low,NET30,invoices@cleansweepfac.com
+VEND-105,Northwind IT Services,IT Services,USA,4.5,Medium,NET30,finance@northwindit.com
+VEND-106,Orion Industrial Parts,Industrial Supplies,USA,4.3,Medium,NET30,ar@orionindustrial.com
+VEND-107,Lumina Energy Solutions,Energy Services,Germany,4.0,Medium,NET30,remittance@luminaenergy.eu
+VEND-108,BlueRiver Catering,Hospitality,USA,4.7,Low,NET15,accounting@bluerivercatering.com
+VEND-109,Saffron Travel Desk,Travel Management,India,3.9,Medium,DUEUPONRECEIPT,ap@saffrontraveldesk.com
+VEND-110,Metro Courier Express,Courier Services,USA,4.2,Medium,NET20,ar@metrocourierexpress.com
+VEND-111,Precision Lab Supplies,Scientific Supplies,USA,4.5,Medium,NET30,finance@precisionlabsupply.com

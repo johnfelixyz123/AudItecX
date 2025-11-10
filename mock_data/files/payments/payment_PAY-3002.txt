@@ -1,0 +1,13 @@
+DOCUMENT TYPE: PAYMENT ADVICE
+VENDOR_ID: VEND-106
+VENDOR_NAME: Orion Industrial Parts
+PAYMENT_ID: PAY-3002
+INVOICE_ID: INV-7002
+DATE: 2025-03-15
+AMOUNT: 15875.00
+CURRENCY: USD
+METHOD: WIRE
+--OCR TEXT--
+Wire transfer executed via treasury reference WT-99821.
+Expedite surcharge approved by maintenance procurement manager.
+Remittance advice emailed to accounts@orion-industrial.com.

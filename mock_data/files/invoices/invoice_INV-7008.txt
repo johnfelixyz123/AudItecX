@@ -1,0 +1,14 @@
+DOCUMENT TYPE: INVOICE
+VENDOR_ID: VEND-105
+VENDOR_NAME: Northwind IT Services
+INVOICE_ID: INV-7008
+PO_ID: PO-617
+DATE: 2025-03-28
+AMOUNT: 7650.00
+CURRENCY: USD
+PAYMENT_TERMS: NET30
+DESCRIPTION: Data governance playbook implementation sprint 1
+--OCR TEXT--
+Deliverables include policy matrix, role training, and automated lineage rules.
+SOW milestone approved by enterprise data team on 2025-03-27.
+Travel expenses not billed; included as courtesy credit line.

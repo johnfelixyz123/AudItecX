@@ -1,0 +1,13 @@
+DOCUMENT TYPE: PURCHASE ORDER
+VENDOR_ID: VEND-110
+VENDOR_NAME: Metro Courier Express
+PO_ID: PO-615
+ISSUE_DATE: 2025-02-15
+AMOUNT: 2800.00
+CURRENCY: USD
+DESCRIPTION: Expedited lab sample courier services
+APPROVER: Clinical Operations Director
+--OCR TEXT--
+Scope covers weekly temperature-controlled courier runs for March 2025.
+Fuel surcharges authorized up to 3% with supporting index documentation.
+Vendor must provide POD scans within 24 hours of delivery completion.

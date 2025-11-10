@@ -1,0 +1,13 @@
+DOCUMENT TYPE: GOODS RECEIPT NOTE
+VENDOR_ID: VEND-111
+VENDOR_NAME: Precision Lab Supplies
+GRN_ID: GRN-4003
+PO_ID: PO-616
+RECEIPT_DATE: 2025-03-19
+QUANTITY_RECEIVED: 100%
+QUALITY_STATUS: Accepted - minor scuffs on 2 kits
+WAREHOUSE: Lab Receiving 1
+--OCR TEXT--
+Serial numbers MPL-5520 through MPL-5534 logged into calibration tracker.
+Two kits with cosmetic scuffs cleared by QA; no functional impact.
+Certificates of conformance filed under QA-Binder-2025.

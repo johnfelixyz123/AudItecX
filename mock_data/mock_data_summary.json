@@ -1,0 +1,110 @@
+{
+  "timestamp": "2025-11-10T06:50:00Z",
+  "added": {
+    "invoices": 12,
+    "pos": 8,
+    "grns": 5,
+    "payments": 5,
+    "journal_rows": 30,
+    "vendors": 12
+  },
+  "files_created": {
+    "invoices": [
+      "files/invoices/invoice_INV-7001.txt",
+      "files/invoices/invoice_INV-7002.txt",
+      "files/invoices/invoice_INV-7003.txt",
+      "files/invoices/invoice_INV-7004.txt",
+      "files/invoices/invoice_INV-7005.txt",
+      "files/invoices/invoice_INV-7006.txt",
+      "files/invoices/invoice_INV-7007.txt",
+      "files/invoices/invoice_INV-7008.txt",
+      "files/invoices/invoice_INV-7009.txt",
+      "files/invoices/invoice_INV-7010.txt",
+      "files/invoices/invoice_INV-7011.txt",
+      "files/invoices/invoice_INV-7012.txt"
+    ],
+    "pos": [
+      "files/pos/po_PO-610.txt",
+      "files/pos/po_PO-611.txt",
+      "files/pos/po_PO-612.txt",
+      "files/pos/po_PO-613.txt",
+      "files/pos/po_PO-614.txt",
+      "files/pos/po_PO-615.txt",
+      "files/pos/po_PO-616.txt",
+      "files/pos/po_PO-617.txt"
+    ],
+    "grns": [
+      "files/grns/grn_GRN-4001.txt",
+      "files/grns/grn_GRN-4002.txt",
+      "files/grns/grn_GRN-4003.txt",
+      "files/grns/grn_GRN-4004.txt",
+      "files/grns/grn_GRN-4005.txt"
+    ],
+    "payments": [
+      "files/payments/payment_PAY-3001.txt",
+      "files/payments/payment_PAY-3002.txt",
+      "files/payments/payment_PAY-3003.txt",
+      "files/payments/payment_PAY-3004.txt",
+      "files/payments/payment_PAY-3005.txt"
+    ]
+  },
+  "anomalies": [
+    {
+      "id": "A-001",
+      "type": "AmountMismatch",
+      "doc": "INV-7002 / PO-611",
+      "description": "Invoice exceeded PO value by 5.8% because of expedited freight markup.",
+      "severity": "Medium"
+    },
+    {
+      "id": "A-002",
+      "type": "POOverrun",
+      "doc": "INV-7010 / PO-612",
+      "description": "Change order drove invoice 13% above authorized PO ceiling.",
+      "severity": "High"
+    },
+    {
+      "id": "A-003",
+      "type": "CurrencyMismatch",
+      "doc": "INV-7003 / PAY-3003",
+      "description": "Invoice issued in EUR while ledger and payment remained in USD without FX adjustment.",
+      "severity": "Medium"
+    },
+    {
+      "id": "A-004",
+      "type": "DuplicateAccrual",
+      "doc": "JE-0008 & JE-0010",
+      "description": "Same invoice INV-7002 accrued twice during March close.",
+      "severity": "Medium"
+    },
+    {
+      "id": "A-005",
+      "type": "Overpayment",
+      "doc": "PAY-3004 / INV-7005",
+      "description": "Corporate card settlement overpaid travel invoice by 400 USD.",
+      "severity": "Medium"
+    },
+    {
+      "id": "A-006",
+      "type": "MissingPO",
+      "doc": "INV-7011",
+      "description": "Invoice arrived without a purchase order yet multiple payments were posted.",
+      "severity": "High"
+    },
+    {
+      "id": "A-007",
+      "type": "DamagedReceipt",
+      "doc": "GRN-4001",
+      "description": "Twelve precision bearings quarantined for damage upon receipt.",
+      "severity": "Medium"
+    },
+    {
+      "id": "A-008",
+      "type": "PartialReceipt",
+      "doc": "GRN-4002",
+      "description": "Backordered motion sensors left PO partially fulfilled (95%).",
+      "severity": "Low"
+    }
+  ],
+  "notes": "Appended to existing mock data; did not overwrite existing files."
+}

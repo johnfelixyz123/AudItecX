@@ -1,0 +1,13 @@
+DOCUMENT TYPE: PURCHASE ORDER
+VENDOR_ID: VEND-108
+VENDOR_NAME: BlueRiver Catering
+PO_ID: PO-613
+ISSUE_DATE: 2025-02-10
+AMOUNT: 1250.00
+CURRENCY: USD
+DESCRIPTION: Leadership summit catering package
+APPROVER: HR Events Manager
+--OCR TEXT--
+Order includes breakfast, lunch, and beverage service for leadership summit.
+Menu approved with dietary accommodations per HR directive.
+Final guest count confirmed at 45 attendees on 2025-02-25.

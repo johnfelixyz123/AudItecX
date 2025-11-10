@@ -1,0 +1,13 @@
+DOCUMENT TYPE: PAYMENT ADVICE
+VENDOR_ID: VEND-105
+VENDOR_NAME: Northwind IT Services
+PAYMENT_ID: PAY-3001
+INVOICE_ID: INV-7001
+DATE: 2025-03-01
+AMOUNT: 4200.00
+CURRENCY: USD
+METHOD: ACH
+--OCR TEXT--
+Payment released via ACH batch 2025-03-01-AP.
+Remittance memo references analytics sprint milestone completion.
+No deductions applied.

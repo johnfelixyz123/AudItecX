@@ -1,0 +1,13 @@
+DOCUMENT TYPE: PURCHASE ORDER
+VENDOR_ID: VEND-111
+VENDOR_NAME: Precision Lab Supplies
+PO_ID: PO-616
+ISSUE_DATE: 2025-02-22
+AMOUNT: 13200.00
+CURRENCY: USD
+DESCRIPTION: Lab calibration kits and QA reagents bundle
+APPROVER: Quality Assurance Director
+--OCR TEXT--
+Includes 14 calibration kits, reagent packs, and certification documentation.
+Delivery required before 2025-03-20 to align with audit readiness.
+Receiving must record serial numbers into calibration logbook CLB-221.

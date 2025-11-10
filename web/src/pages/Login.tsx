@@ -2,12 +2,16 @@ import { motion } from 'framer-motion'
 import { ShieldCheck } from 'lucide-react'
 import { LoginForm } from '../components/Auth/LoginForm'
 import { useTheme } from '../hooks/useTheme'
+import { BrandMark } from '../components/shared/BrandMark'
 
 export default function LoginPage() {
 	const { theme } = useTheme()
 
 	return (
 		<div className="relative flex min-h-screen bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900">
+			<div className="pointer-events-none absolute left-0 right-0 top-6 flex justify-center px-6 lg:justify-start">
+				<BrandMark />
+			</div>
 			<motion.div
 				className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.35),_transparent_55%)]"
 				animate={{ opacity: theme === 'dark' ? 0.6 : 0.4 }}

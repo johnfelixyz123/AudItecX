@@ -1,0 +1,14 @@
+DOCUMENT TYPE: INVOICE
+VENDOR_ID: VEND-110
+VENDOR_NAME: Metro Courier Express
+INVOICE_ID: INV-7006
+PO_ID: PO-615
+DATE: 2025-03-15
+AMOUNT: 2890.00
+CURRENCY: USD
+PAYMENT_TERMS: NET20
+DESCRIPTION: Expedited lab sample courier routes March cycle
+--OCR TEXT--
+Routes covered: biotech labs 12-city loop with cold-chain monitoring.
+Fuel surcharge 3% applied due to March diesel index.
+Proof of delivery scans archived under POD-2025-03-15.

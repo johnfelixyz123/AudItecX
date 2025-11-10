@@ -1,0 +1,13 @@
+DOCUMENT TYPE: PAYMENT ADVICE
+VENDOR_ID: VEND-109
+VENDOR_NAME: Saffron Travel Desk
+PAYMENT_ID: PAY-3004
+INVOICE_ID: INV-7005
+DATE: 2025-04-05
+AMOUNT: 5200.00
+CURRENCY: USD
+METHOD: CREDIT CARD SETTLEMENT
+--OCR TEXT--
+Corporate card settlement exceeded invoice by 400 due to ancillary travel fees.
+AP flagged variance for review but payment already captured.
+Memo references travel block authorization AUTH-7712.

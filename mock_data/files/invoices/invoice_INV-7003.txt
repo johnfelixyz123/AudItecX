@@ -1,0 +1,14 @@
+DOCUMENT TYPE: INVOICE
+VENDOR_ID: VEND-107
+VENDOR_NAME: Lumina Energy Solutions
+INVOICE_ID: INV-7003
+PO_ID: PO-612
+DATE: 2025-02-20
+AMOUNT: 9800.00
+CURRENCY: EUR
+PAYMENT_TERMS: NET30
+DESCRIPTION: LED retrofit phase 1 labor and materials
+--OCR TEXT--
+Crew completed level 4 lighting retrofit.
+Invoice denominated in EUR per master services agreement.
+Includes 30 fixtures, lift rental, and after-hours labor premium.

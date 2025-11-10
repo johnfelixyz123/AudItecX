@@ -1,0 +1,13 @@
+DOCUMENT TYPE: PURCHASE ORDER
+VENDOR_ID: VEND-109
+VENDOR_NAME: Saffron Travel Desk
+PO_ID: PO-614
+ISSUE_DATE: 2025-02-12
+AMOUNT: 4800.00
+CURRENCY: USD
+DESCRIPTION: Supplier summit airfare coordination
+APPROVER: Strategic Sourcing VP
+--OCR TEXT--
+Travel block for April vendor summit including eight round-trip tickets.
+PO capped at 4800 USD inclusive of change protection fees.
+All itinerary changes require updated PO release prior to billing.

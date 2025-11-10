@@ -1,0 +1,14 @@
+DOCUMENT TYPE: INVOICE
+VENDOR_ID: VEND-109
+VENDOR_NAME: Saffron Travel Desk
+INVOICE_ID: INV-7005
+PO_ID: PO-614
+DATE: 2025-03-08
+AMOUNT: 4800.00
+CURRENCY: USD
+PAYMENT_TERMS: NET30
+DESCRIPTION: Asia supplier summit airfare block
+--OCR TEXT--
+Invoice covers eight round-trip itineraries booked for April planning visit.
+Includes change protection and lounge access upgrades requested by sourcing lead.
+Ticket numbers referenced in traveler manifest TM-5592.

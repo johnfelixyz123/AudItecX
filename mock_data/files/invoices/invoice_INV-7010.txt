@@ -1,0 +1,14 @@
+DOCUMENT TYPE: INVOICE
+VENDOR_ID: VEND-107
+VENDOR_NAME: Lumina Energy Solutions
+INVOICE_ID: INV-7010
+PO_ID: PO-612
+DATE: 2025-04-10
+AMOUNT: 10850.00
+CURRENCY: USD
+PAYMENT_TERMS: NET30
+DESCRIPTION: Lighting retrofit phase 2 change order
+--OCR TEXT--
+Change order covers upgraded motion sensors and control rewiring.
+Additional hours approved by facilities director on 2025-04-08.
+Invoice exceeds PO value due to emergency safety compliance adjustments.
