@@ -139,6 +139,69 @@ export async function pollStream(runId: string) {
 	}
 }
 
+export type StartSimulationPayload = {
+	vendor_id?: string
+	sample_size?: number
+	anomaly_rate?: number
+}
+
+export type StartSimulationResponse = {
+	run_id: string
+	vendor_id: string
+	sample_size: number
+	anomaly_rate: number
+}
+
+export type SimulationRunDetail = {
+	run_id: string
+	vendor_id: string
+	document_count?: number
+	anomaly_count?: number
+	policy_violation_count?: number
+	package_path?: string | null
+	report_pdf_path?: string | null
+	report_docx_path?: string | null
+	comparison?: string
+	generated_at?: string
+	documents?: Array<Record<string, unknown>>
+	anomalies?: Array<Record<string, unknown>>
+	policy_violations?: PolicyViolation[]
+	chat_history?: Array<Record<string, unknown>>
+}
+
+export async function startSimulation(payload: StartSimulationPayload): Promise<StartSimulationResponse> {
+	const response = await client.post<StartSimulationResponse>('/api/simulations', payload)
+	return response.data
+}
+
+export async function fetchSimulationRun(runId: string): Promise<SimulationRunDetail> {
+	try {
+		const response = await client.get<SimulationRunDetail>(`/api/simulations/${runId}`)
+		return response.data
+	} catch (error) {
+		console.warn('Simulation detail unavailable, returning minimal payload', error)
+		return {
+			run_id: runId,
+			vendor_id: 'VEND-SIM',
+			documents: [],
+			anomalies: [],
+			policy_violations: [],
+		}
+	}
+}
+
+export function buildSimulationStreamUrl(runId: string): string {
+	return `/api/simulations/${runId}/stream`
+}
+
+export function buildSimulationPackageUrl(runId: string): string {
+	return `/api/simulations/${runId}/package`
+}
+
+export async function cleanupSimulationRun(runId: string): Promise<void> {
+	await client.post(`/api/simulations/${runId}/cleanup`)
+}
+
 export type HeatmapMode = 'vendor' | 'month'
 
 export type HeatmapResponse = {

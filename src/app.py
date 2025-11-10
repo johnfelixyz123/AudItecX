@@ -26,6 +26,7 @@ TEMPLATE_DIR = ROOT / "src" / "ui" / "templates"
 if str(ROOT) not in sys.path:
     sys.path.append(str(ROOT))
 
+from api.features_simulation import simulation_bp  # noqa: E402
 from src.agents import planner_agent  # noqa: E402
 from src.nlu import intent_parser  # noqa: E402
 from src.orchestrator import Orchestrator  # noqa: E402
@@ -36,6 +37,8 @@ from src.vendor_metrics import VendorRiskError, build_vendor_risk_metrics  # noq
 
 app = Flask(__name__, template_folder=str(TEMPLATE_DIR))
 app.config["SECRET_KEY"] = "auditecx-dev"
+
+app.register_blueprint(simulation_bp)
 
 logging.basicConfig(level=logging.INFO)
 LOGGER = logging.getLogger("auditecx.app")

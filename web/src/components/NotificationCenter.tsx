@@ -248,6 +248,14 @@ function formatNotificationType(notificationType: string): string {
 			return 'Run complete'
 		case 'anomaly_alert':
 			return 'Anomaly alert'
+		case 'simulation_complete':
+			return 'Simulation complete'
+		case 'simulation_anomaly_alert':
+			return 'Simulation anomaly alert'
+		case 'simulation_policy_alert':
+			return 'Simulation policy alert'
+		case 'simulation_error':
+			return 'Simulation error'
 		default:
 			return notificationType.replace(/_/g, ' ')
 	}

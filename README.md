@@ -13,6 +13,7 @@ AudItecX is a prototype audit documentation aggregator focused on supplier payme
 - Packages evidence (docs, summary, journal extracts, manifest) into a ZIP under `out/`
 - Creates audit log artifacts in `audit_logs/` and simulates GitHub/Email notifications
 - Offers both a streaming Flask UI and a CLI backed by the same orchestrator
+- Ships a deterministic **Audit Simulation Mode** that fabricates vendor evidence, anomalies, chat history, policy flags, and packaged reports for live demos
 
 ## 🧱 Project Structure
 ```
@@ -23,6 +24,9 @@ AudItecX/
 ├── mock_data/
 │   ├── files/
 │   └── journal_entries.csv
+├── api/
+│   ├── features_simulation.py
+│   └── sim_helpers.py
 ├── src/
 │   ├── app.py
 │   ├── aggregator.py
@@ -55,7 +59,16 @@ AudItecX/
 │   ├── conftest.py
 │   ├── test_db_adapter.py
 │   ├── test_match_agent.py
-│   └── test_packager.py
+│   ├── test_packager.py
+│   ├── test_sim_helpers.py
+│   └── test_features_simulation.py
+├── web/
+│   ├── package.json
+│   ├── src/
+│   │   ├── pages/AuditWorkspace.tsx
+│   │   ├── services/api.ts
+│   │   └── components/
+│   └── tests
 ├── audit_logs/
 └── out/
 ```
@@ -89,12 +102,18 @@ AudItecX/
    ```
    Open http://127.0.0.1:5000 and submit a natural language request. Summary text and status updates will stream into the page, with download/send actions exposed when packaging completes.
 
-6. **Use the CLI**
+6. **Trigger the full-spectrum simulation mode (UI)**
+   - Launch the Flask UI and navigate to the **Full-spectrum simulation mode** card on the workspace page.
+   - Adjust the vendor, sample size, or anomaly rate and click **Start simulation**.
+   - SSE updates will stream into the card, and the Simulation Chat Timeline + Evidence/Anomalies panels will populate with synthetic data.
+   - Download the packaged ZIP or reports via the provided actions. Artifacts land under `mock_data/sim/<RUN_ID>/`, `out/package_SIM_<RUN_ID>.zip`, and `out/reports/`.
+
+7. **Use the CLI**
    ```bash
    python src/cli.py "Compare Q2 invoices for VEND-100" --email auditor@example.com
    ```
 
-7. **Run the test suite**
+8. **Run the test suite**
    ```bash
    pytest tests/
    ```
@@ -110,8 +129,13 @@ Switching adapters happens via dependency injection; tests rely on the mock mode
 - `test_db_adapter.py`: ensures the SQLite-backed adapter returns expected journal entries
 - `test_match_agent.py`: verifies matching heuristics and anomaly detection
 - `test_packager.py`: validates package contents and manifest creation
+- `test_sim_helpers.py`: exercises deterministic document/anomaly generation, packaging, and SSE queue helpers
+- `test_features_simulation.py`: validates the simulation worker assembles artifacts end-to-end
 
 Execute: `pytest`
+
+## 🛠️ VS Code Tasks
+- `Run Pytest`: runs the backend test suite via the integrated task (`Terminal > Run Task...`).
 
 ## 🧩 Extensibility
 - MCP adapters live in `src/mcp_adapters/` and can be swapped for real MCP server calls

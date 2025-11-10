@@ -20,8 +20,15 @@ describe('NotificationCenter', () => {
 				timestamp: new Date('2025-01-01T10:00:00Z').toISOString(),
 				read: false,
 			},
+			{
+				id: 'notif-2',
+				type: 'simulation_anomaly_alert',
+				message: 'Simulation flagged 3 anomalies',
+				timestamp: new Date('2025-01-01T11:00:00Z').toISOString(),
+				read: false,
+			},
 		])
-		ackSpy = jest.spyOn(api, 'acknowledgeNotifications').mockResolvedValue({ status: 'ok', updated: 1 })
+		ackSpy = jest.spyOn(api, 'acknowledgeNotifications').mockResolvedValue({ status: 'ok', updated: 2 })
 	})
 
 	afterEach(() => {
@@ -36,14 +43,16 @@ describe('NotificationCenter', () => {
 
 		const trigger = screen.getByRole('button', { name: /notifications/i })
 		expect(trigger).toBeTruthy()
-		await waitFor(() => expect(trigger.getAttribute('aria-label')).toContain('1 unread'))
+		await waitFor(() => expect(trigger.getAttribute('aria-label')).toContain('2 unread'))
 
 		await userEvent.click(trigger)
 		await waitFor(() => expect(screen.getByText('Audit run completed')).toBeTruthy())
+		await waitFor(() => expect(screen.getByText('Simulation flagged 3 anomalies')).toBeTruthy())
+		await waitFor(() => expect(screen.getByText('Simulation anomaly alert')).toBeTruthy())
 
 		const markAllButton = screen.getByRole('button', { name: /mark all as read/i })
 		await userEvent.click(markAllButton)
 
-		await waitFor(() => expect(ackSpy).toHaveBeenCalledWith(['notif-1']))
+		await waitFor(() => expect(ackSpy).toHaveBeenCalledWith(['notif-1', 'notif-2']))
 	})
 })

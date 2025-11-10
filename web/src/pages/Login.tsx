@@ -9,9 +9,6 @@ export default function LoginPage() {
 
 	return (
 		<div className="relative flex min-h-screen bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900">
-			<div className="pointer-events-none absolute left-0 right-0 top-6 flex justify-center px-6 lg:justify-start">
-				<BrandMark />
-			</div>
 			<motion.div
 				className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.35),_transparent_55%)]"
 				animate={{ opacity: theme === 'dark' ? 0.6 : 0.4 }}
@@ -28,15 +25,16 @@ export default function LoginPage() {
 						<span className="inline-flex items-center gap-2 rounded-full bg-blue-500/20 px-4 py-1 text-xs uppercase tracking-wide text-blue-200">
 							<ShieldCheck className="h-4 w-4" aria-hidden /> AudItecX Platform
 						</span>
-						<h1 className="text-4xl font-bold sm:text-5xl">Secure audit orchestration for every role</h1>
+						<h1 className="text-4xl font-bold sm:text-5xl">Secure audit orchestration tailored to every role</h1>
 						<p className="max-w-xl text-lg text-blue-100">
-							Sign in to orchestrate vendor reconciliations, review live summaries, and collaborate on evidence with
-							explainable anomaly detection.
+							Step into an environment where vendor reconciliations run smoothly, live summaries keep teams aligned, and evidence collaboration stays transparent with explainable anomaly detection built in.
 						</p>
 						<ul className="space-y-2 text-sm text-blue-200">
-							<li>• Real-time streaming summaries from the orchestration engine</li>
-							<li>• Evidence explorer and anomaly insights tailored by role</li>
-							<li>• Deterministic mock data for offline demos</li>
+							<li>• Stream real-time insights as the orchestration engine progresses</li>
+							<li>• Explore evidence and anomaly intelligence curated for each role</li>
+							<li>• Automate compliance and reporting through built-in policy analysis, scheduling, and report generation</li>
+							<li>• Stay informed with contextual alerts via the integrated notification center</li>
+							<li>• Rely on deterministic mock data that makes offline demos effortless and repeatable</li>
 						</ul>
 					</motion.div>
 				</section>
@@ -47,6 +45,9 @@ export default function LoginPage() {
 						animate={{ opacity: 1, x: 0 }}
 						transition={{ duration: 0.5, ease: 'easeOut' }}
 					>
+						<div className="mb-6 flex justify-start">
+							<BrandMark wrapperClassName="items-start text-left" />
+						</div>
 						<h2 className="mb-6 text-2xl font-semibold text-white">Welcome back</h2>
 						<LoginForm />
 						<p className="mt-6 text-xs text-blue-100">

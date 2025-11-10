@@ -5,15 +5,17 @@ type BrandMarkProps = {
   className?: string
   compact?: boolean
   ariaHidden?: boolean
+  wrapperClassName?: string
 }
 
-export function BrandMark({ className, compact = false, ariaHidden = false }: BrandMarkProps) {
+export function BrandMark({ className, compact = false, ariaHidden = false, wrapperClassName }: BrandMarkProps) {
   return (
     <span
       className={cn(
-        'inline-flex flex-col items-center text-slate-800 dark:text-slate-100',
+        'inline-flex flex-col items-center text-blue-100 dark:text-slate-100',
         !compact && 'gap-4',
-        compact && 'flex-row gap-2',
+        compact && 'flex-row gap-3',
+        wrapperClassName,
       )}
       aria-hidden={ariaHidden}
     >
@@ -28,12 +30,12 @@ export function BrandMark({ className, compact = false, ariaHidden = false }: Br
         loading="lazy"
       />
       {!compact ? (
-        <span className="text-2xl font-semibold tracking-tight">
-          <span className="font-bold text-emerald-600">A</span>
+        <span className="font-semibold tracking-tight drop-shadow-lg text-6xl">
+          <span className="font-bold text-sky-300">A</span>
           ud
-          <span className="font-bold text-emerald-600">I</span>
+          <span className="font-bold text-sky-300">I</span>
           tec
-          <span className="font-bold text-emerald-600">X</span>
+          <span className="font-bold text-sky-300">X</span>
         </span>
       ) : null}
     </span>
