@@ -1,8 +1,11 @@
-import { Bell, Menu, Search, LogOut } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { ChevronDown, Menu, Search, LogOut } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../hooks/useAuth'
 import { Button } from '../shared/Button'
 import { ThemeSwitcher } from '../ThemeSwitcher'
+import { NotificationCenter } from '../NotificationCenter'
+import { cn } from '../../utils/cn'
 
 type TopbarProps = {
 	onToggleNav?: () => void
@@ -11,59 +14,99 @@ type TopbarProps = {
 export function Topbar({ onToggleNav }: TopbarProps) {
 	const { user, logout } = useAuth()
 	const navigate = useNavigate()
+	const [menuOpen, setMenuOpen] = useState(false)
+	const menuRef = useRef<HTMLDivElement | null>(null)
 
 	const handleLogout = () => {
+		setMenuOpen(false)
 		logout()
 		navigate('/login')
 	}
 
+	useEffect(() => {
+		if (!menuOpen) return
+		const handleClickOutside = (event: MouseEvent) => {
+			if (!menuRef.current) return
+			if (!menuRef.current.contains(event.target as Node)) {
+				setMenuOpen(false)
+			}
+		}
+		const handleKey = (event: KeyboardEvent) => {
+			if (event.key === 'Escape') {
+				setMenuOpen(false)
+			}
+		}
+		document.addEventListener('mousedown', handleClickOutside)
+		document.addEventListener('keydown', handleKey)
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside)
+			document.removeEventListener('keydown', handleKey)
+		}
+	}, [menuOpen])
+
 	return (
-		<header className="sticky top-0 z-40 border-b border-slate-200/70 bg-white/85 px-4 py-4 backdrop-blur-lg transition dark:border-slate-800 dark:bg-slate-900/80 sm:px-6">
+		<header className="sticky top-0 z-40 border-b border-border/60 bg-surface/80 px-4 py-4 backdrop-blur-lg transition sm:px-6 supports-[backdrop-filter]:bg-surface/60">
 			<div className="flex items-center justify-between gap-4">
 				<div className="flex flex-1 items-center gap-3">
 					<button
 						type="button"
 						onClick={onToggleNav}
-						className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-500 shadow-sm transition hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-primary/50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 lg:hidden"
+						className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-border/60 bg-surface text-muted shadow-sm transition hover:bg-surface-muted/70 focus:outline-none focus:ring-2 focus:ring-ring/40 lg:hidden"
 						aria-label="Toggle navigation"
 					>
 						<Menu className="h-5 w-5" aria-hidden />
 					</button>
-					<label className="flex flex-1 items-center gap-3 rounded-xl border border-slate-200 bg-white px-3 py-2 shadow-sm focus-within:border-primary dark:border-slate-700 dark:bg-slate-900">
-					<Search className="h-4 w-4 text-slate-400" aria-hidden />
+					<label className="flex flex-1 items-center gap-3 rounded-xl border border-border/60 bg-surface px-3 py-2 shadow-sm focus-within:border-primary/60">
+						<Search className="h-4 w-4 text-muted" aria-hidden />
 					<input
 						type="search"
 						placeholder="Search audits, evidence, runs..."
-						className="w-full border-0 bg-transparent text-sm outline-none placeholder:text-slate-400"
+							className="w-full border-0 bg-transparent text-sm text-foreground outline-none placeholder:text-muted/70"
 					/>
 					</label>
 				</div>
 				<div className="flex items-center gap-2 sm:gap-3">
-					<ThemeSwitcher />
-					<button
-						type="button"
-						className="relative rounded-full border border-slate-200 bg-white p-2 text-slate-500 transition hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
-						aria-label="Notifications"
-					>
-						<Bell className="h-4 w-4" aria-hidden />
-						<span className="absolute right-1 top-1 inline-flex h-2 w-2 animate-pulse rounded-full bg-primary" />
-					</button>
-					<div className="flex items-center gap-3 rounded-full border border-slate-200 bg-white px-3 py-2 shadow-sm dark:border-slate-700 dark:bg-slate-900">
-						<div className="h-8 w-8 rounded-full bg-gradient-to-br from-primary to-blue-500 text-center text-sm font-semibold leading-8 text-white">
-							{user?.name?.slice(0, 2).toUpperCase() ?? 'AU'}
-						</div>
-						<div className="hidden sm:block">
-							<p className="text-sm font-semibold text-slate-700 dark:text-slate-100">{user?.name ?? 'Auditor'}</p>
-							<p className="text-xs text-slate-400 capitalize">{user?.role ?? 'guest'}</p>
-						</div>
-						<Button
+					<NotificationCenter />
+					<div className="relative" ref={menuRef}>
+						<button
 							type="button"
-							variant="ghost"
-							className="text-slate-400 hover:text-slate-600"
-							onClick={handleLogout}
-							icon={<LogOut className="h-4 w-4" aria-hidden />}
-							aria-label="Sign out"
-						/>
+							onClick={() => setMenuOpen((prev) => !prev)}
+							className="flex items-center gap-3 rounded-full border border-border/60 bg-surface px-3 py-2 text-left shadow-sm transition hover:bg-surface-muted/70 focus:outline-none focus:ring-2 focus:ring-ring/40"
+							aria-haspopup="menu"
+							aria-expanded={menuOpen}
+						>
+							<div className="h-8 w-8 rounded-full bg-gradient-to-br from-primary to-accent text-center text-sm font-semibold leading-8 text-primary-foreground">
+								{user?.name?.slice(0, 2).toUpperCase() ?? 'AU'}
+							</div>
+							<div className="hidden sm:block">
+								<p className="text-sm font-semibold text-foreground">{user?.name ?? 'Auditor'}</p>
+								<p className="text-xs text-muted-foreground capitalize">{user?.role ?? 'guest'}</p>
+							</div>
+							<ChevronDown
+								className={cn('h-4 w-4 text-muted transition', menuOpen ? 'rotate-180 text-foreground' : '')}
+								aria-hidden
+							/>
+						</button>
+						{menuOpen ? (
+							<div className="absolute right-0 z-30 mt-3 w-72 rounded-2xl border border-border/60 bg-surface/95 p-4 shadow-xl shadow-[0_18px_45px_-30px_hsla(var(--shadow-elevated)/0.7)]">
+								<div className="mb-3">
+									<p className="text-sm font-semibold text-foreground">{user?.name ?? 'Auditor'}</p>
+									<p className="text-xs text-muted-foreground capitalize">{user?.role ?? 'guest'}</p>
+								</div>
+								<ThemeSwitcher />
+								<div className="mt-4 flex justify-end">
+									<Button
+										type="button"
+										variant="ghost"
+										className="px-3 py-2 text-sm text-muted hover:text-foreground"
+										onClick={handleLogout}
+										icon={<LogOut className="h-4 w-4" aria-hidden />}
+									>
+										Sign out
+									</Button>
+								</div>
+							</div>
+						) : null}
 					</div>
 				</div>
 			</div>

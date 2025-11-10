@@ -1,6 +1,6 @@
 import type { Config } from 'tailwindcss'
 
-const config: Config = {
+const config = {
 	darkMode: ['class', '[data-theme="dark"]'],
 	content: ['./index.html', './src/**/*.{ts,tsx,js,jsx}'],
 	theme: {
@@ -9,36 +9,48 @@ const config: Config = {
 				sans: ['Inter', 'system-ui', 'sans-serif'],
 			},
 			colors: {
+				background: {
+					DEFAULT: 'hsl(var(--color-background) / <alpha-value>)',
+				},
+				foreground: {
+					DEFAULT: 'hsl(var(--color-foreground) / <alpha-value>)',
+				},
+				surface: {
+					DEFAULT: 'hsl(var(--color-surface) / <alpha-value>)',
+					muted: 'hsl(var(--color-surface-muted) / <alpha-value>)',
+				},
+				border: {
+					DEFAULT: 'hsl(var(--color-border) / <alpha-value>)',
+				},
 				primary: {
-					DEFAULT: '#2563eb',
-					foreground: '#f8fafc',
-					soft: '#dbeafe',
+					DEFAULT: 'hsl(var(--color-primary) / <alpha-value>)',
+					foreground: 'hsl(var(--color-primary-foreground) / <alpha-value>)',
+					soft: 'hsl(var(--color-primary-soft) / <alpha-value>)',
 				},
 				accent: {
-					DEFAULT: '#38bdf8',
-					foreground: '#0c4a6e',
+					DEFAULT: 'hsl(var(--color-accent) / <alpha-value>)',
+					foreground: 'hsl(var(--color-accent-foreground) / <alpha-value>)',
 				},
 				muted: {
-					DEFAULT: '#f1f5f9',
-					foreground: '#475569',
+					DEFAULT: 'hsl(var(--color-muted) / <alpha-value>)',
+					foreground: 'hsl(var(--color-muted-foreground) / <alpha-value>)',
 				},
-				ink: {
-					DEFAULT: '#0f172a',
-					light: '#1e293b',
+				ring: {
+					DEFAULT: 'hsl(var(--color-ring) / <alpha-value>)',
 				},
 			},
 			boxShadow: {
-				card: '0 20px 45px -25px rgba(15, 23, 42, 0.55)',
-				glass: '0 18px 60px -30px rgba(15, 23, 42, 0.45)',
+				card: '0 20px 45px -25px hsl(var(--shadow-elevated) / 0.45)',
+				glass: '0 18px 60px -30px hsl(var(--shadow-elevated) / 0.35)',
 			},
 			backgroundImage: {
-				page: 'linear-gradient(145deg, rgba(15, 23, 42, 0.04), rgba(14, 116, 144, 0.08))',
-				'dark-page': 'radial-gradient(circle at 20% 20%, rgba(148, 163, 184, 0.05), transparent 60%), radial-gradient(circle at 80% 0%, rgba(59, 130, 246, 0.12), transparent 55%)',
+				page: 'linear-gradient(145deg, hsla(var(--shadow-elevated) / 0.08), hsla(var(--color-accent) / 0.12))',
+				'dark-page': 'radial-gradient(circle at 20% 20%, hsla(var(--color-accent) / 0.1), transparent 60%), radial-gradient(circle at 80% 0%, hsla(var(--color-primary) / 0.18), transparent 55%)',
 			},
 			keyframes: {
 				pulseGlow: {
-					'0%, 100%': { boxShadow: '0 0 0 0 rgba(37, 99, 235, 0.5)' },
-					'50%': { boxShadow: '0 0 0 16px rgba(37, 99, 235, 0)' },
+					'0%, 100%': { boxShadow: '0 0 0 0 hsla(var(--color-primary) / 0.5)' },
+					'50%': { boxShadow: '0 0 0 16px hsla(var(--color-primary) / 0)' },
 				},
 			},
 			animation: {
@@ -47,6 +59,6 @@ const config: Config = {
 		},
 	},
 	plugins: [],
-}
+} satisfies Config
 
 export default config

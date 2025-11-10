@@ -102,7 +102,10 @@ class DocAgent:
 
 def _parse_file(path: Path) -> tuple[Dict[str, str], str]:
     metadata: Dict[str, str] = {}
-    lines = path.read_text(encoding="utf-8").splitlines()
+    try:
+        lines = path.read_text(encoding="utf-8").splitlines()
+    except UnicodeDecodeError:
+        return {}, ""
     body_lines: List[str] = []
     for line in lines:
         match = METADATA_LINE.match(line)

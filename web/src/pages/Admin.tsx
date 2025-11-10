@@ -1,4 +1,5 @@
 import { Card, CardContent, CardHeader } from '../components/shared/Card'
+import { SchedulerUI } from '../components/features/SchedulerUI'
 
 const mockUsers = [
   { name: 'Ivy Internal', email: 'internal.auditor@example.com', role: 'internal' },
@@ -38,6 +39,7 @@ export default function AdminPage() {
           </table>
         </CardContent>
       </Card>
+      <SchedulerUI />
     </div>
   )
 }

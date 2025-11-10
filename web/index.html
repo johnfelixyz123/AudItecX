@@ -5,6 +5,32 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>web</title>
+    <script>
+      (() => {
+        try {
+          const storageKey = 'auditecx.theme';
+          const stored = localStorage.getItem(storageKey);
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          const root = document.documentElement;
+          const isTheme = (value) => value === 'light' || value === 'dark' || value === 'contrast';
+          let resolved = prefersDark ? 'dark' : 'light';
+          if (stored === 'system' || stored === null) {
+            resolved = prefersDark ? 'dark' : 'light';
+          } else if (isTheme(stored)) {
+            resolved = stored;
+          }
+          root.dataset.theme = resolved;
+          if (resolved === 'dark' || resolved === 'contrast') {
+            root.classList.add('dark');
+          }
+          if (resolved === 'contrast') {
+            root.classList.add('contrast');
+          }
+        } catch (error) {
+          /* no-op */
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

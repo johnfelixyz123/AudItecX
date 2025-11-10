@@ -1,14 +1,16 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import type { ChangeEvent, FormEvent } from 'react'
 import { motion } from 'framer-motion'
 import { Send, Sparkles } from 'lucide-react'
 import { useAuth } from '../hooks/useAuth'
 import { useStream } from '../hooks/useStream'
 import {
+  fetchRunConversation,
   fetchRunDetail,
   pollStream,
   sendPackage,
   startNlQuery,
+  type ConversationMessage,
   type ManifestSummary,
 } from '../services/api'
 import { AuditSummaryPanel } from '../components/Dashboard/AuditSummaryPanel'
@@ -16,6 +18,8 @@ import { EvidenceTable, type EvidenceRecord } from '../components/Dashboard/Evid
 import { DocumentViewer } from '../components/Dashboard/DocumentViewer'
 import { AnomalyPanel, type AnomalyRecord } from '../components/Dashboard/AnomalyPanel'
 import { Button } from '../components/shared/Button'
+import { AuditChatTimeline } from '../components/features/AuditChatTimeline'
+import { PolicyCheckPanel } from '../components/features/PolicyCheckPanel'
 
 export default function AuditWorkspace() {
   const { user } = useAuth()
@@ -33,6 +37,8 @@ export default function AuditWorkspace() {
   const [viewerRecord, setViewerRecord] = useState<EvidenceRecord | null>(null)
   const [viewerText, setViewerText] = useState<string | undefined>(undefined)
   const [sending, setSending] = useState(false)
+  const [conversation, setConversation] = useState<ConversationMessage[]>([])
+  const [conversationLoading, setConversationLoading] = useState(false)
 
   useStream(streamUrl, {
     enabled: Boolean(streamUrl),
@@ -44,6 +50,31 @@ export default function AuditWorkspace() {
         case 'summary_chunk':
           if (typeof event.payload?.text === 'string') {
             setSummary((prev) => `${prev}${event.payload?.text}`)
+            setConversation((prev) => {
+              if (!prev.length) {
+                return prev
+              }
+              const next = [...prev]
+              const assistantIndex = next.findIndex((message) => message.role === 'assistant')
+              const chunk = String(event.payload?.text)
+              if (assistantIndex >= 0) {
+                const existing = next[assistantIndex]
+                next[assistantIndex] = {
+                  ...existing,
+                  text: `${existing.text ?? ''}${chunk}`,
+                  timestamp: new Date().toISOString(),
+                }
+              } else {
+                next.push({
+                  id: `${runId ?? 'pending'}-assistant`,
+                  role: 'assistant',
+                  text: chunk,
+                  timestamp: new Date().toISOString(),
+                })
+              }
+              return next
+            })
+            setConversationLoading(false)
           }
           break
         case 'complete':
@@ -56,11 +87,13 @@ export default function AuditWorkspace() {
           }
           if (runId) {
             void hydrateRunDetails(runId)
+            void hydrateConversation(runId, { preserveExisting: true })
           }
           setStreamUrl(null)
           break
         case 'error':
           setStatus(String(event.payload?.message ?? 'Error during orchestration'))
+          setConversationLoading(false)
           setStreamUrl(null)
           break
         default:
@@ -73,13 +106,38 @@ export default function AuditWorkspace() {
           events.forEach((item: { event?: string; payload?: Record<string, unknown> }) => {
             if (item.event === 'summary_chunk' && typeof item.payload?.text === 'string') {
               setSummary((prev) => `${prev}${item.payload?.text}`)
+              setConversation((prev) => {
+                if (!prev.length) {
+                  return prev
+                }
+                const next = [...prev]
+                const assistantIndex = next.findIndex((message) => message.role === 'assistant')
+                const chunk = String(item.payload?.text)
+                if (assistantIndex >= 0) {
+                  const existing = next[assistantIndex]
+                  next[assistantIndex] = {
+                    ...existing,
+                    text: `${existing.text ?? ''}${chunk}`,
+                    timestamp: new Date().toISOString(),
+                  }
+                } else {
+                  next.push({
+                    id: `${runId ?? 'pending'}-assistant`,
+                    role: 'assistant',
+                    text: chunk,
+                    timestamp: new Date().toISOString(),
+                  })
+                }
+                return next
+              })
+              setConversationLoading(false)
             }
           })
         })
       : undefined,
   })
 
-  const hydrateRunDetails = async (id: string): Promise<ManifestSummary> => {
+  const hydrateRunDetails = useCallback(async (id: string): Promise<ManifestSummary> => {
     const detail = await fetchRunDetail(id)
     setEvidence(
       (detail.documents ?? []).map((doc) => ({
@@ -114,7 +172,30 @@ export default function AuditWorkspace() {
       setPackageReady(true)
     }
     return detail
-  }
+  }, [])
+
+  const hydrateConversation = useCallback(
+    async (id: string, options?: { preserveExisting?: boolean }): Promise<void> => {
+      const preserveExisting = options?.preserveExisting ?? false
+      setConversationLoading(true)
+      try {
+        const payload = await fetchRunConversation(id)
+        if (payload.messages?.length) {
+          setConversation(payload.messages)
+        } else if (!preserveExisting) {
+          setConversation([])
+        }
+      } catch (error) {
+        console.warn('Conversation not available yet', error)
+        if (!preserveExisting) {
+          setConversation([])
+        }
+      } finally {
+        setConversationLoading(false)
+      }
+    },
+    [],
+  )
 
   useEffect(() => {
     if (!runId || packageReady) return
@@ -133,6 +214,7 @@ export default function AuditWorkspace() {
         )
         if (ready) {
           setStatus((prev) => (prev.includes('Run complete') ? prev : 'Run complete'))
+          void hydrateConversation(runId, { preserveExisting: true })
           return
         }
       } catch (error) {
@@ -151,7 +233,7 @@ export default function AuditWorkspace() {
         window.clearTimeout(timeoutId)
       }
     }
-  }, [runId, packageReady])
+  }, [runId, packageReady, hydrateRunDetails, hydrateConversation])
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -161,6 +243,16 @@ export default function AuditWorkspace() {
     setPackageReady(false)
     setEvidence([])
     setAnomalies([])
+    const submittedAt = new Date().toISOString()
+    setConversation([
+      {
+        id: `local-user-${Date.now()}`,
+        role: 'user',
+        text: query,
+        timestamp: submittedAt,
+      },
+    ])
+    setConversationLoading(true)
 
     try {
       const response = await startNlQuery({ text: query, email })
@@ -198,6 +290,22 @@ export default function AuditWorkspace() {
           suggestion: 'Mark as immaterial and close.',
         },
       ])
+      const assistantMock = mockChunks.join('')
+      setConversation([
+        {
+          id: `mock-user-${Date.now()}`,
+          role: 'user',
+          text: query,
+          timestamp: submittedAt,
+        },
+        {
+          id: `mock-assistant-${Date.now()}`,
+          role: 'assistant',
+          text: assistantMock,
+          timestamp: new Date().toISOString(),
+        },
+      ])
+      setConversationLoading(false)
     }
   }
 
@@ -260,6 +368,12 @@ export default function AuditWorkspace() {
         onSend={handleSendPackage}
         onDownload={() => (runId ? window.open(`/api/download/${runId}`, '_blank') : undefined)}
       />
+        <AuditChatTimeline
+          runId={runId}
+          messages={conversation}
+          isLoading={conversationLoading}
+          onRefresh={runId ? () => hydrateConversation(runId) : undefined}
+        />
       <motion.div layout className="grid gap-6 lg:grid-cols-2">
         <EvidenceTable
           records={evidence}
@@ -275,6 +389,22 @@ export default function AuditWorkspace() {
         />
         <AnomalyPanel anomalies={anomalies} onAction={(anomaly) => setStatus(`Follow-up created for ${anomaly.label}`)} />
       </motion.div>
+      <PolicyCheckPanel
+        onOpenViolation={(violation, context) => {
+          setStatus(`Policy violation flagged: ${violation.control_label ?? violation.control}`)
+          setViewerRecord({
+            filename: context.documentName,
+            doc_type: 'Policy document',
+          })
+          const detailLines = [violation.statement, '', context.excerpt.trim()]
+          if (context.page) {
+            detailLines.push(`Page ${context.page}`)
+          }
+          detailLines.push(`Run: ${context.policyRunId}`)
+          setViewerText(detailLines.filter(Boolean).join('\n'))
+          setViewerOpen(true)
+        }}
+      />
       <DocumentViewer open={viewerOpen} record={viewerRecord} textPreview={viewerText} onClose={() => setViewerOpen(false)} />
       <footer className="flex flex-wrap items-center gap-3 text-xs text-slate-400">
         <Sparkles className="h-4 w-4 text-primary" aria-hidden />

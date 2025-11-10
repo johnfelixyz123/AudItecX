@@ -5,6 +5,8 @@ import { KPIGroup } from '../components/Dashboard/KPIGroup'
 import { ChartInsights } from '../components/Dashboard/ChartInsights'
 import { Card, CardContent, CardHeader } from '../components/shared/Card'
 import { ROUTES } from '../constants/routes'
+import { VendorRiskCard } from '../components/features/VendorRiskCard'
+import { AnomalyHeatmap } from '../components/features/AnomalyHeatmap'
 
 export default function DashboardInternal() {
   const stats = useMemo(
@@ -61,6 +63,10 @@ export default function DashboardInternal() {
             </div>
           </CardContent>
         </Card>
+      </div>
+      <div className="grid gap-6 lg:grid-cols-2">
+        <VendorRiskCard />
+        <AnomalyHeatmap />
       </div>
       <ChartInsights />
     </div>

@@ -14,8 +14,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 		const variants: Record<ButtonVariant, string> = {
 			primary: 'btn-primary',
 			secondary: 'btn-muted',
-			ghost:
-				'btn text-slate-600 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800',
+			ghost: 'btn-ghost',
 		}
 
 		return (

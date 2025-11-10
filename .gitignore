@@ -1,0 +1,26 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+.env/
+.api_env/
+api/venv/
+
+# Pytest cache
+.pytest_cache/
+
+# Application output and logs
+audit_logs/
+out/
+
+# Node artifacts
+web/node_modules/
+web/.next/
+web/dist/
+
+# OS files
+.DS_Store
